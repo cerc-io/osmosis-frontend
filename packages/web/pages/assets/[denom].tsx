@@ -556,7 +556,8 @@ export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
     },
   }));
 
-  return { paths, fallback: "blocking" };
+  // Set fallback false for generating static export
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps<AssetInfoPageProps> = async ({
@@ -664,6 +665,8 @@ export const getStaticProps: GetStaticProps<AssetInfoPageProps> = async ({
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 7200 seconds (2 hours)
-    revalidate: 7200, // In seconds
+    // revalidate: 7200, // In seconds
+    // Set revalidate to false for generating static export
+    revalidate: false,
   };
 };

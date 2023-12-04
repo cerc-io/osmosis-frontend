@@ -5,9 +5,12 @@ const path = require("path");
  * @type {import('next').NextConfig}
  **/
 const config = {
+  output: "export",
   reactStrictMode: true,
   images: {
     domains: ["app.osmosis.zone", "raw.githubusercontent.com", "pbs.twimg.com"],
+    // Set true for generating static export
+    unoptimized: true,
   },
   webpack(config) {
     /**
@@ -112,5 +115,8 @@ module.exports = withSentryConfig(
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
+
+    // Disable for generating static export
+    disableServerWebpackPlugin: true,
   }
 );

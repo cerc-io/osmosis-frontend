@@ -191,6 +191,8 @@ export async function getStaticProps() {
     props: {
       apps,
     },
-    revalidate: 86400,
+    // revalidate: 86400,
+    // Set revalidate to false for generating static export
+    revalidate: false,
   };
 }
