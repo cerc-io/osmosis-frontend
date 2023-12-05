@@ -18,7 +18,8 @@
     "generate:cosmos-kit-wallet-list": "dotenv -c -- ts-node --esm config/generate-cosmos-kit-wallet-list.ts",
     "generate:sprite-ids": "dotenv -c -- ts-node --esm config/generate-sprite-ids.ts",
     "watch": "yarn watch:sprite-ids",
-    "watch:sprite-ids": "chokidar 'public/icons/sprite.svg' -c 'yarn generate:sprite-ids'"
+    "watch:sprite-ids": "chokidar 'public/icons/sprite.svg' -c 'yarn generate:sprite-ids'",
+    "proxy-api": "node -r dotenv/config scripts/proxy-server.js"
   },
   "dependencies": {
     "@0xsquid/sdk": "^1.14.0",
@@ -143,10 +144,13 @@
     "chain-registry": "^1.20.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.1",
+    "cors": "^2.8.5",
     "dotenv-cli": "^7.2.1",
     "eslint-config-next": "^13.5.4",
     "eslint-config-prettier": "^8.3.0",
+    "express": "^4.18.2",
     "glob": "^9.3.4",
+    "http-proxy-middleware": "^2.0.6",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "jest-in-case": "^1.0.2",
