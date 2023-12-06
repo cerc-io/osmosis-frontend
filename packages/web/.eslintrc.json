@@ -15,8 +15,7 @@
           "**/*.spec.ts",
           "**/*.spec.tsx",
           "**/*.spec.js",
-          "**/setup-tests.js",
-          "**/scripts/*.js"
+          "**/setup-tests.js"
         ]
       }
     ],
