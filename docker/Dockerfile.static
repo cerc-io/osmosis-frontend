@@ -12,7 +12,7 @@ FROM node:18-alpine3.17
 
 WORKDIR /app
 COPY --from=build /app .
-CMD cd packages/web
 
+WORKDIR /app/packages/web
 EXPOSE 3000
 CMD [ "yarn", "build:static" ]
