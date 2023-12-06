@@ -19,5 +19,5 @@ export const IMPERATOR_INDEXER_DEFAULT_BASEURL =
 /**
  * This domain has a whitelist, so in local development an auth token is required
  */
-// TODO: Use public coingecko API for demo
+// Use public coingecko API for demo
 export const COINGECKO_API_DEFAULT_BASEURL = "https://api.coingecko.com/api";
