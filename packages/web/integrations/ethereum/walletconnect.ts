@@ -52,7 +52,7 @@ export class ObservableWalletConnect implements EthWallet {
         description: "Interchain Liquidity Lab",
         icons:
           typeof window !== "undefined"
-            ? [`${window.origin}/icons/OSMO.svg`]
+            ? [`${window.origin}/icons/osmo.svg`]
             : [],
         name: "Osmosis",
         url: "https://osmosis.zone/",
