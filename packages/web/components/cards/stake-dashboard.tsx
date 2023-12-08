@@ -160,7 +160,9 @@ export const StakeDashboard: React.FC<{
             onClick={collectRewards}
             image={
               <div
-                className={`pointer-events-none absolute left-[-2.5rem] bottom-[-2.1875rem] h-full w-full bg-[url('${process.env.NEXT_PUBLIC_BASEPATH}/images/gift-box.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible`}
+                // TODO: use process.env.NEXT_PUBLIC_BASEPATH
+                // (build fails because ${process.env.NEXT_PUBLIC_BASEPATH} not getting replaced)
+                className={`pointer-events-none absolute left-[-2.5rem] bottom-[-2.1875rem] h-full w-full bg-[url('/apps/osmosis/images/gift-box.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible`}
               />
             }
           />
@@ -172,7 +174,9 @@ export const StakeDashboard: React.FC<{
             onClick={collectAndReinvestRewards}
             image={
               <div
-                className={`pointer-events-none absolute left-[-1.5625rem] bottom-[-2.1875rem] h-full w-full bg-[url('${process.env.NEXT_PUBLIC_BASEPATH}/images/piggy-bank.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible`}
+                // TODO: use process.env.NEXT_PUBLIC_BASEPATH
+                // (build fails because ${process.env.NEXT_PUBLIC_BASEPATH} not getting replaced)
+                className={`pointer-events-none absolute left-[-1.5625rem] bottom-[-2.1875rem] h-full w-full bg-[url('/apps/osmosis/images/piggy-bank.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible`}
               />
             }
           />
