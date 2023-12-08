@@ -398,7 +398,7 @@ export const AssetsTableV1: FunctionComponent<Props> = observer(
       () =>
         ENABLE_FEATURES || featureFlags.tokenInfo
           ? tableData.map((cell) => ({
-              link: `${process.env.NEXT_PUBLIC_BASEPATH}/assets/${cell.coinDenom}`,
+              link: `/assets/${cell.coinDenom}`,
               makeHoverClass: () => "hover:bg-osmoverse-850",
               onClick: () => {
                 logEvent([
@@ -590,7 +590,7 @@ export const AssetsTableV1: FunctionComponent<Props> = observer(
                     // featureFlags.tokenInfo ? (
                     // Show token info for demo
                     <Link
-                      href={`${process.env.NEXT_PUBLIC_BASEPATH}/assets/${assetData.coinDenom}`}
+                      href={`/assets/${assetData.coinDenom}`}
                       className="flex shrink flex-col gap-1 text-ellipsis"
                       onClick={(e) => {
                         e.stopPropagation();

@@ -183,7 +183,7 @@ const MainLayoutWrapper: FunctionComponent<{ children: ReactNode }> = observer(
         },
         {
           label: t("menu.assets"),
-          link: `${process.env.NEXT_PUBLIC_BASEPATH}/assets`,
+          link: "/assets",
           icon: <Icon id="assets-pie-chart" className="h-5 w-5" />,
           selectionTest: /\/assets/,
         },
