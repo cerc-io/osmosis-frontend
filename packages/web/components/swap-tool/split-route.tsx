@@ -217,7 +217,7 @@ const Pools: FunctionComponent<Route> = observer(
                         {queryPool?.type === "stable" && (
                           <Image
                             alt="stable-pool"
-                            src="/icons/stableswap-pool.svg"
+                            src={`${process.env.NEXT_PUBLIC_BASEPATH}/icons/stableswap-pool.svg`}
                             width={16}
                             height={16}
                           />

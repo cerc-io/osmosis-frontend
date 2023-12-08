@@ -5,7 +5,7 @@ const path = require("path");
  * @type {import('next').NextConfig}
  **/
 const config = {
-  basePath: "/apps/osmosis",
+  basePath: process.env.NEXT_PUBLIC_BASEPATH,
   output: process.env.STATIC_EXPORT === "true" ? "export" : undefined,
   reactStrictMode: true,
   images: {
