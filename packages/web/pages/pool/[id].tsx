@@ -54,16 +54,17 @@ const Pool: FunctionComponent = observer(() => {
     )
   );
 
-  useEffect(() => {
-    if (
-      queryPool &&
-      !flags.concentratedLiquidity &&
-      queryPool.type === "concentrated" &&
-      !isMobile
-    ) {
-      router.push(`/pools`);
-    }
-  }, [queryPool, isMobile, flags.concentratedLiquidity, router]);
+  // Show supercharged pool for demo
+  // useEffect(() => {
+  //   if (
+  //     queryPool &&
+  //     !flags.concentratedLiquidity &&
+  //     queryPool.type === "concentrated" &&
+  //     !isMobile
+  //   ) {
+  //     router.push(`/pools`);
+  //   }
+  // }, [queryPool, isMobile, flags.concentratedLiquidity, router]);
 
   const memoedPools = useMemo(
     () => (queryPool ? [queryPool] : []),
@@ -94,15 +95,17 @@ const Pool: FunctionComponent = observer(() => {
         </div>
       ) : (
         <>
-          {flags.concentratedLiquidity &&
-          queryPool?.type === "concentrated" &&
-          !isMobile ? (
-            <ConcentratedLiquidityPool poolId={poolId} />
-          ) : Boolean(queryPool?.sharePool) ? (
-            queryPool && <SharePool poolId={poolId} />
-          ) : queryPool ? (
-            <BasePoolDetails pool={queryPool!.pool} />
-          ) : null}
+          {
+            // Show supercharged pool for demo
+            // flags.concentratedLiquidity &&
+            queryPool?.type === "concentrated" && !isMobile ? (
+              <ConcentratedLiquidityPool poolId={poolId} />
+            ) : Boolean(queryPool?.sharePool) ? (
+              queryPool && <SharePool poolId={poolId} />
+            ) : queryPool ? (
+              <BasePoolDetails pool={queryPool!.pool} />
+            ) : null
+          }
         </>
       )}
     </>

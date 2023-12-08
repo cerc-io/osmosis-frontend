@@ -7,7 +7,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { FunctionComponent, useCallback } from "react";
 import { useMemo } from "react";
-import { useEffect } from "react";
 import { useUnmount } from "react-use";
 
 import { Icon } from "~/components/assets";
@@ -36,7 +35,6 @@ import {
 } from "~/hooks";
 import {
   useAssetInfoConfig,
-  useFeatureFlags,
   useLocalStorageState,
   useNavBar,
   useWalletSelect,
@@ -70,17 +68,18 @@ interface AssetInfoPageProps {
 
 const AssetInfoPage: FunctionComponent<AssetInfoPageProps> = observer(
   ({ tokenDenom, ...rest }) => {
-    const featureFlags = useFeatureFlags();
-    const router = useRouter();
+    // const featureFlags = useFeatureFlags();
+    // const router = useRouter();
 
-    useEffect(() => {
-      if (
-        typeof featureFlags.tokenInfo !== "undefined" &&
-        !featureFlags.tokenInfo
-      ) {
-        router.push("/assets");
-      }
-    }, [featureFlags.tokenInfo, router]);
+    // Show token info for demo
+    // useEffect(() => {
+    //   if (
+    //     typeof featureFlags.tokenInfo !== "undefined" &&
+    //     !featureFlags.tokenInfo
+    //   ) {
+    //     router.push("/assets");
+    //   }
+    // }, [featureFlags.tokenInfo, router]);
 
     if (!tokenDenom) {
       return null; // TODO: Add skeleton loader

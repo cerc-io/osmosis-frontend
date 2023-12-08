@@ -9,13 +9,7 @@ import { Duration } from "dayjs/plugin/duration";
 import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import {
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { useMeasure } from "react-use";
 
 import { Icon, PoolAssetsIcon } from "~/components/assets";
@@ -92,13 +86,14 @@ export const SharePool: FunctionComponent<{ poolId: string }> = observer(
     const pool = sharePoolDetail?.querySharePool;
     const { delegateSharesToValidator } = useSuperfluidPool();
 
-    // feature flag check
-    useEffect(() => {
-      // redirect if CL pool and CL feature is off
-      if (pool?.type === "concentrated" && !flags.concentratedLiquidity) {
-        router.push("/pools");
-      }
-    }, [pool?.type, flags.concentratedLiquidity, router]);
+    // Show supercharged pool for demo
+    // // feature flag check
+    // useEffect(() => {
+    //   // redirect if CL pool and CL feature is off
+    //   if (pool?.type === "concentrated" && !flags.concentratedLiquidity) {
+    //     router.push("/pools");
+    //   }
+    // }, [pool?.type, flags.concentratedLiquidity, router]);
 
     // user analytics
     const { poolName, poolWeight } = useMemo(
@@ -611,7 +606,8 @@ export const SharePool: FunctionComponent<{ poolId: string }> = observer(
           )}
         </section>
         {!isMobile &&
-          flags.concentratedLiquidity &&
+          // Show supercharged pool for demo
+          // flags.concentratedLiquidity &&
           flags.upgrades &&
           relevantCfmmToClUpgrade &&
           pool && (

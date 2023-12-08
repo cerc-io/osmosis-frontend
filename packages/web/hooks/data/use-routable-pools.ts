@@ -80,9 +80,10 @@ export function useRoutablePools(
     autorun(() => {
       const filteredPools = allPools
         .filter((pool) => {
-          // filter concentrated pools if feature flag is not enabled
-          if (pool.type === "concentrated" && !flags.concentratedLiquidity)
-            return false;
+          // Show supercharged pool for demo
+          // // filter concentrated pools if feature flag is not enabled
+          // if (pool.type === "concentrated" && !flags.concentratedLiquidity)
+          //   return false;
 
           // some min TVL for balancer pools
           return pool
@@ -115,7 +116,7 @@ export function useRoutablePools(
       }
     );
   }, [
-    flags.concentratedLiquidity,
+    // flags.concentratedLiquidity,
     numPoolsLimit,
     minimumLiquidity,
     // below should remain constant

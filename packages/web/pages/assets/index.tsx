@@ -496,8 +496,9 @@ const PoolCardsDisplayer: FunctionComponent<{ poolIds: string[] }> = observer(
           poolBonding.highestBondDuration?.aggregateApr ?? new RatePretty(0);
 
         if (
-          !pool ||
-          (pool.type === "concentrated" && !flags.concentratedLiquidity)
+          !pool
+          // Show supercharged pool for demo
+          // || (pool.type === "concentrated" && !flags.concentratedLiquidity)
         ) {
           return undefined;
         }

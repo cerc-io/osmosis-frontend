@@ -320,37 +320,44 @@ const Pools: NextPage = observer(function () {
             />
           </section>
         )}
-      {flags.concentratedLiquidity &&
+      {
+        // Show supercharged pools for demo
+        // flags.concentratedLiquidity &&
         flags.upgrades &&
-        userUpgrades.availableCfmmToClUpgrades.length > 0 &&
-        !isMobile && (
-          <section
-            ref={superchargeLiquidityRef}
-            className="pt-8 pb-10 md:pt-4 md:pb-5"
-          >
-            <SuperchargePool
-              title={t("addConcentratedLiquidityeEarnMore.title")}
-              caption={t("addConcentratedLiquidityeEarnMore.caption")}
-              primaryCta={t("addConcentratedLiquidityeEarnMore.primaryCta")}
-              secondaryCta={t("addConcentratedLiquidityeEarnMore.secondaryCta")}
-              onCtaClick={onOpenUserUpgrades}
-              onSecondaryClick={() => {
-                setShowConcentratedLiqIntro(true);
-              }}
-            />
-            {showConcentratedLiqIntro && (
-              <ConcentratedLiquidityLearnMoreModal
-                isOpen
-                onRequestClose={() => setShowConcentratedLiqIntro(false)}
+          userUpgrades.availableCfmmToClUpgrades.length > 0 &&
+          !isMobile && (
+            <section
+              ref={superchargeLiquidityRef}
+              className="pt-8 pb-10 md:pt-4 md:pb-5"
+            >
+              <SuperchargePool
+                title={t("addConcentratedLiquidityeEarnMore.title")}
+                caption={t("addConcentratedLiquidityeEarnMore.caption")}
+                primaryCta={t("addConcentratedLiquidityeEarnMore.primaryCta")}
+                secondaryCta={t(
+                  "addConcentratedLiquidityeEarnMore.secondaryCta"
+                )}
+                onCtaClick={onOpenUserUpgrades}
+                onSecondaryClick={() => {
+                  setShowConcentratedLiqIntro(true);
+                }}
               />
-            )}
-            <UserUpgradesModal
-              isOpen={isUserUpgradesOpen}
-              onRequestClose={onCloseUserUpgrades}
-            />
-          </section>
-        )}
-      {flags.concentratedLiquidity &&
+              {showConcentratedLiqIntro && (
+                <ConcentratedLiquidityLearnMoreModal
+                  isOpen
+                  onRequestClose={() => setShowConcentratedLiqIntro(false)}
+                />
+              )}
+              <UserUpgradesModal
+                isOpen={isUserUpgradesOpen}
+                onRequestClose={onCloseUserUpgrades}
+              />
+            </section>
+          )
+      }
+      {
+        // Show supercharged pools for demo
+        // flags.concentratedLiquidity &&
         queryOsmosis.queryAccountsPositions.get(account?.address ?? "")
           .positions.length > 0 && (
           <section ref={myPositionsRef}>
@@ -359,7 +366,8 @@ const Pools: NextPage = observer(function () {
               <MyPositionsSection />
             </div>
           </section>
-        )}
+        )
+      }
       <section ref={myPoolsRef}>
         <MyPoolsSection />
       </section>

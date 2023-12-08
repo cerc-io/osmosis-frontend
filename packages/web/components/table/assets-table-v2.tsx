@@ -466,19 +466,24 @@ export const AssetsTableV2: FunctionComponent<Props> = observer(
 
     const rowDefs = useMemo<RowDef[]>(
       () =>
-        featureFlags.tokenInfo
-          ? tableData.map((cell) => ({
-              link: `/assets/${cell.coinDenom}`,
-              makeHoverClass: () => "hover:bg-osmoverse-850",
-              onClick: () => {
-                logEvent([
-                  EventName.Assets.assetClicked,
-                  { tokenName: cell.coinDenom },
-                ]);
-              },
-            }))
-          : [],
-      [logEvent, tableData, featureFlags.tokenInfo]
+        // featureFlags.tokenInfo ?
+        // Show token info for demo
+        tableData.map((cell) => ({
+          link: `/assets/${cell.coinDenom}`,
+          makeHoverClass: () => "hover:bg-osmoverse-850",
+          onClick: () => {
+            logEvent([
+              EventName.Assets.assetClicked,
+              { tokenName: cell.coinDenom },
+            ]);
+          },
+        })),
+      // : [],
+      [
+        logEvent,
+        tableData,
+        // featureFlags.tokenInfo
+      ]
     );
 
     const tokenToActivate = cells.find(
@@ -579,35 +584,39 @@ export const AssetsTableV2: FunctionComponent<Props> = observer(
                   />
                 </div>
               )}
-              {featureFlags.tokenInfo ? (
-                <Link
-                  href={`/assets/${assetData.coinDenom}`}
-                  className="flex shrink flex-col gap-1 text-ellipsis"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    logEvent([
-                      EventName.Assets.assetClicked,
-                      { tokenName: assetData.coinDenom },
-                    ]);
-                  }}
-                >
-                  <h6>{assetData.coinDenom}</h6>
-                  {assetData.assetName && (
-                    <span className="caption text-osmoverse-400">
-                      {assetData.assetName}
-                    </span>
-                  )}
-                </Link>
-              ) : (
-                <div className="flex shrink flex-col gap-1 text-ellipsis">
-                  <h6>{assetData.coinDenom}</h6>
-                  {assetData.assetName && (
-                    <span className="caption text-osmoverse-400">
-                      {assetData.assetName}
-                    </span>
-                  )}
-                </div>
-              )}
+              {
+                // featureFlags.tokenInfo ? (
+                true ? (
+                  // Show token info for demo
+                  <Link
+                    href={`/assets/${assetData.coinDenom}`}
+                    className="flex shrink flex-col gap-1 text-ellipsis"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      logEvent([
+                        EventName.Assets.assetClicked,
+                        { tokenName: assetData.coinDenom },
+                      ]);
+                    }}
+                  >
+                    <h6>{assetData.coinDenom}</h6>
+                    {assetData.assetName && (
+                      <span className="caption text-osmoverse-400">
+                        {assetData.assetName}
+                      </span>
+                    )}
+                  </Link>
+                ) : (
+                  <div className="flex shrink flex-col gap-1 text-ellipsis">
+                    <h6>{assetData.coinDenom}</h6>
+                    {assetData.assetName && (
+                      <span className="caption text-osmoverse-400">
+                        {assetData.assetName}
+                      </span>
+                    )}
+                  </div>
+                )
+              }
             </div>
             <div className="flex items-center gap-2">
               <div className="flex shrink-0 flex-col items-end gap-1">
