@@ -7,7 +7,7 @@ import spriteSVGURL from "~/public/icons/sprite.svg";
 const SEO_VALUES = {
   SITE_URL: "https://osmosis.zone/",
   TWITTER_HANDLE: "@osmosiszone",
-  IMAGE_PREVIEW: "/images/preview.jpg",
+  IMAGE_PREVIEW: `${process.env.NEXT_PUBLIC_BASEPATH}/images/preview.jpg`,
   FAVICON: "/favicon.ico",
 };
 

@@ -131,7 +131,7 @@ const AssetInfoView: FunctionComponent<AssetInfoPageProps> = observer(
           icon={
             <Image
               alt="left"
-              src="/icons/arrow-left.svg"
+              src={`${process.env.NEXT_PUBLIC_BASEPATH}/icons/arrow-left.svg`}
               width={24}
               height={24}
               className="text-osmoverse-200"
@@ -139,7 +139,7 @@ const AssetInfoView: FunctionComponent<AssetInfoPageProps> = observer(
           }
           label={t("tokenInfos.backButton")}
           ariaLabel={t("tokenInfos.ariaBackButton")}
-          href="/assets"
+          href={`${process.env.NEXT_PUBLIC_BASEPATH}/assets`}
         />
       ),
       ctas: [],
