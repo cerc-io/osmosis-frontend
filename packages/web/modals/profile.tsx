@@ -256,11 +256,7 @@ export const ProfileModal: FunctionComponent<
                 <span>{t("buyTokens")}</span>
               </button>
 
-              <Link
-                href={`${process.env.NEXT_PUBLIC_BASEPATH}/assets`}
-                passHref
-                legacyBehavior
-              >
+              <Link href="/assets" passHref legacyBehavior>
                 <ArrowButton isLink>{t("profile.viewAllAssets")}</ArrowButton>
               </Link>
             </div>

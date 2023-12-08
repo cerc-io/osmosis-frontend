@@ -139,7 +139,7 @@ const AssetInfoView: FunctionComponent<AssetInfoPageProps> = observer(
           }
           label={t("tokenInfos.backButton")}
           ariaLabel={t("tokenInfos.ariaBackButton")}
-          href={`${process.env.NEXT_PUBLIC_BASEPATH}/assets`}
+          href="/assets"
         />
       ),
       ctas: [],

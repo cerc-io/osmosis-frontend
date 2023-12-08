@@ -149,7 +149,7 @@ const RelatedAssetSkeleton: FunctionComponent<{
 
   return (
     <Link
-      href={`${process.env.NEXT_PUBLIC_BASEPATH}/assets/${denom}`}
+      href={`/assets/${denom}`}
       className="flex cursor-pointer flex-row items-center justify-between self-stretch"
       passHref
       onClick={onLinkClick}
