@@ -6,6 +6,7 @@ import { Icon, PoolAssetsIcon, PoolAssetsName } from "~/components/assets";
 import { PoolAssetInfo } from "~/components/assets/types";
 import { CustomClasses } from "~/components/types";
 import { Metric } from "~/components/types";
+import { URBIT_DEPLOYMENT } from "~/config";
 import { useTranslation } from "~/hooks";
 
 // <Link /> notes: turn off prefetch to avoid loading tons of pools and lagging the client, many pools will be in viewport. They will still be fetched on hover.
@@ -33,7 +34,11 @@ export const PoolCard: FunctionComponent<
 
   return (
     <Link
-      href={`/pool/${poolId}`}
+      href={
+        URBIT_DEPLOYMENT
+          ? `https://app.osmosis.zone/pool/${poolId}`
+          : `/pool/${poolId}`
+      }
       passHref
       prefetch={false}
       className={classNames(
