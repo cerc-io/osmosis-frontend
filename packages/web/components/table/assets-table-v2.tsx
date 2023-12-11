@@ -26,7 +26,7 @@ import { initialAssetsSort } from "~/config";
 import { AssetLists } from "~/config/generated/asset-lists";
 import { ChainList } from "~/config/generated/chain-list";
 import { EventName } from "~/config/user-analytics-v2";
-import { useFeatureFlags, useTranslation } from "~/hooks";
+import { useTranslation } from "~/hooks";
 import {
   useAmplitudeAnalytics,
   useLocalStorageState,
@@ -78,7 +78,7 @@ export const AssetsTableV2: FunctionComponent<Props> = observer(
     const { t } = useTranslation();
 
     const { logEvent } = useAmplitudeAnalytics();
-    const featureFlags = useFeatureFlags();
+    // const featureFlags = useFeatureFlags();
 
     const [favoritesList, onSetFavoritesList] = useLocalStorageState(
       "favoritesList",

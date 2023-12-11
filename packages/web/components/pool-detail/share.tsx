@@ -8,7 +8,6 @@ import classNames from "classnames";
 import { Duration } from "dayjs/plugin/duration";
 import { observer } from "mobx-react-lite";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { useMeasure } from "react-use";
 
@@ -44,7 +43,7 @@ const E = EventName.PoolDetail;
 
 export const SharePool: FunctionComponent<{ poolId: string }> = observer(
   ({ poolId }) => {
-    const router = useRouter();
+    // const router = useRouter();
     const {
       chainStore,
       queriesStore,

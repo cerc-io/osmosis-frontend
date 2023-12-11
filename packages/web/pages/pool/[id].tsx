@@ -11,7 +11,6 @@ import {
 import SkeletonLoader from "~/components/skeleton-loader";
 import { useTranslation, useWindowSize } from "~/hooks";
 import { useNavBar } from "~/hooks";
-import { useFeatureFlags } from "~/hooks/use-feature-flags";
 import { TradeTokens } from "~/modals";
 import { useStore } from "~/stores";
 
@@ -25,7 +24,7 @@ const Pool: FunctionComponent = observer(() => {
 
   const queryOsmosis = queriesStore.get(chainId).osmosis!;
 
-  const flags = useFeatureFlags();
+  // const flags = useFeatureFlags();
 
   const [showTradeModal, setShowTradeModal] = useState(false);
 
