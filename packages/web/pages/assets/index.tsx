@@ -20,7 +20,7 @@ import { AssetsTableV2 } from "~/components/table/assets-table-v2";
 import { DepoolingTable } from "~/components/table/depooling-table";
 import { Metric } from "~/components/types";
 import { DesktopOnlyPrivateText } from "~/components/your-balance/privacy";
-import { EventName } from "~/config";
+import { ENABLE_FEATURES, EventName } from "~/config";
 import { useTranslation } from "~/hooks";
 import {
   useAmplitudeAnalytics,
@@ -484,7 +484,7 @@ const PoolCardsDisplayer: FunctionComponent<{ poolIds: string[] }> = observer(
 
     const queryOsmosis = queriesStore.get(chainStore.osmosis.chainId).osmosis!;
 
-    // const flags = useFeatureFlags();
+    const flags = useFeatureFlags();
 
     const pools = poolIds
       .map((poolId) => {
@@ -496,9 +496,9 @@ const PoolCardsDisplayer: FunctionComponent<{ poolIds: string[] }> = observer(
           poolBonding.highestBondDuration?.aggregateApr ?? new RatePretty(0);
 
         if (
-          !pool
-          // Show supercharged pool for demo
-          // || (pool.type === "concentrated" && !flags.concentratedLiquidity)
+          !pool ||
+          (pool.type === "concentrated" &&
+            !(ENABLE_FEATURES || flags.concentratedLiquidity))
         ) {
           return undefined;
         }

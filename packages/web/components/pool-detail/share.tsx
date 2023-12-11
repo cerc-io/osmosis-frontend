@@ -8,7 +8,14 @@ import classNames from "classnames";
 import { Duration } from "dayjs/plugin/duration";
 import { observer } from "mobx-react-lite";
 import Image from "next/image";
-import { FunctionComponent, useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useMeasure } from "react-use";
 
 import { Icon, PoolAssetsIcon } from "~/components/assets";
@@ -18,7 +25,7 @@ import { AssetBreakdownChart, PriceBreakdownChart } from "~/components/chart";
 import PoolComposition from "~/components/chart/pool-composition";
 import { SuperchargePool } from "~/components/funnels/concentrated-liquidity";
 import { Disableable } from "~/components/types";
-import { EventName } from "~/config";
+import { ENABLE_FEATURES, EventName } from "~/config";
 import { useTranslation } from "~/hooks";
 import {
   useAmplitudeAnalytics,
@@ -43,7 +50,7 @@ const E = EventName.PoolDetail;
 
 export const SharePool: FunctionComponent<{ poolId: string }> = observer(
   ({ poolId }) => {
-    // const router = useRouter();
+    const router = useRouter();
     const {
       chainStore,
       queriesStore,
@@ -85,14 +92,16 @@ export const SharePool: FunctionComponent<{ poolId: string }> = observer(
     const pool = sharePoolDetail?.querySharePool;
     const { delegateSharesToValidator } = useSuperfluidPool();
 
-    // Show supercharged pool for demo
-    // // feature flag check
-    // useEffect(() => {
-    //   // redirect if CL pool and CL feature is off
-    //   if (pool?.type === "concentrated" && !flags.concentratedLiquidity) {
-    //     router.push("/pools");
-    //   }
-    // }, [pool?.type, flags.concentratedLiquidity, router]);
+    // feature flag check
+    useEffect(() => {
+      // redirect if CL pool and CL feature is off
+      if (
+        pool?.type === "concentrated" &&
+        !(ENABLE_FEATURES || flags.concentratedLiquidity)
+      ) {
+        router.push("/pools");
+      }
+    }, [pool?.type, flags.concentratedLiquidity, router]);
 
     // user analytics
     const { poolName, poolWeight } = useMemo(
@@ -605,8 +614,7 @@ export const SharePool: FunctionComponent<{ poolId: string }> = observer(
           )}
         </section>
         {!isMobile &&
-          // Show supercharged pool for demo
-          // flags.concentratedLiquidity &&
+          (ENABLE_FEATURES || flags.concentratedLiquidity) &&
           flags.upgrades &&
           relevantCfmmToClUpgrade &&
           pool && (

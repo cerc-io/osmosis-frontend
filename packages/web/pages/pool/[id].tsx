@@ -9,7 +9,8 @@ import {
   SharePool,
 } from "~/components/pool-detail";
 import SkeletonLoader from "~/components/skeleton-loader";
-import { useTranslation, useWindowSize } from "~/hooks";
+import { ENABLE_FEATURES } from "~/config";
+import { useFeatureFlags, useTranslation, useWindowSize } from "~/hooks";
 import { useNavBar } from "~/hooks";
 import { TradeTokens } from "~/modals";
 import { useStore } from "~/stores";
@@ -24,7 +25,7 @@ const Pool: FunctionComponent = observer(() => {
 
   const queryOsmosis = queriesStore.get(chainId).osmosis!;
 
-  // const flags = useFeatureFlags();
+  const flags = useFeatureFlags();
 
   const [showTradeModal, setShowTradeModal] = useState(false);
 
@@ -53,17 +54,16 @@ const Pool: FunctionComponent = observer(() => {
     )
   );
 
-  // Show supercharged pool for demo
-  // useEffect(() => {
-  //   if (
-  //     queryPool &&
-  //     !flags.concentratedLiquidity &&
-  //     queryPool.type === "concentrated" &&
-  //     !isMobile
-  //   ) {
-  //     router.push(`/pools`);
-  //   }
-  // }, [queryPool, isMobile, flags.concentratedLiquidity, router]);
+  useEffect(() => {
+    if (
+      queryPool &&
+      !(ENABLE_FEATURES || flags.concentratedLiquidity) &&
+      queryPool.type === "concentrated" &&
+      !isMobile
+    ) {
+      router.push(`/pools`);
+    }
+  }, [queryPool, isMobile, flags.concentratedLiquidity, router]);
 
   const memoedPools = useMemo(
     () => (queryPool ? [queryPool] : []),
@@ -94,17 +94,15 @@ const Pool: FunctionComponent = observer(() => {
         </div>
       ) : (
         <>
-          {
-            // Show supercharged pool for demo
-            // flags.concentratedLiquidity &&
-            queryPool?.type === "concentrated" && !isMobile ? (
-              <ConcentratedLiquidityPool poolId={poolId} />
-            ) : Boolean(queryPool?.sharePool) ? (
-              queryPool && <SharePool poolId={poolId} />
-            ) : queryPool ? (
-              <BasePoolDetails pool={queryPool!.pool} />
-            ) : null
-          }
+          {(ENABLE_FEATURES || flags.concentratedLiquidity) &&
+          queryPool?.type === "concentrated" &&
+          !isMobile ? (
+            <ConcentratedLiquidityPool poolId={poolId} />
+          ) : Boolean(queryPool?.sharePool) ? (
+            queryPool && <SharePool poolId={poolId} />
+          ) : queryPool ? (
+            <BasePoolDetails pool={queryPool!.pool} />
+          ) : null}
         </>
       )}
     </>

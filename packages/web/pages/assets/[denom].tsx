@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import { GetStaticPathsResult, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FunctionComponent, useCallback } from "react";
+import { FunctionComponent, useCallback, useEffect } from "react";
 import { useMemo } from "react";
 import { useUnmount } from "react-use";
 
@@ -24,12 +24,18 @@ import { SwapTool } from "~/components/swap-tool";
 import TokenDetails from "~/components/token-details/token-details";
 import TwitterSection from "~/components/twitter-section/twitter-section";
 import YourBalance from "~/components/your-balance/your-balance";
-import { COINGECKO_PUBLIC_URL, EventName, TWITTER_PUBLIC_URL } from "~/config";
+import {
+  COINGECKO_PUBLIC_URL,
+  ENABLE_FEATURES,
+  EventName,
+  TWITTER_PUBLIC_URL,
+} from "~/config";
 import { AssetLists } from "~/config/generated/asset-lists";
 import { ChainList } from "~/config/generated/chain-list";
 import {
   useAmplitudeAnalytics,
   useCurrentLanguage,
+  useFeatureFlags,
   useTranslation,
   useWindowSize,
 } from "~/hooks";
@@ -68,18 +74,17 @@ interface AssetInfoPageProps {
 
 const AssetInfoPage: FunctionComponent<AssetInfoPageProps> = observer(
   ({ tokenDenom, ...rest }) => {
-    // const featureFlags = useFeatureFlags();
-    // const router = useRouter();
+    const featureFlags = useFeatureFlags();
+    const router = useRouter();
 
-    // Show token info for demo
-    // useEffect(() => {
-    //   if (
-    //     typeof featureFlags.tokenInfo !== "undefined" &&
-    //     !featureFlags.tokenInfo
-    //   ) {
-    //     router.push("/assets");
-    //   }
-    // }, [featureFlags.tokenInfo, router]);
+    useEffect(() => {
+      if (
+        typeof featureFlags.tokenInfo !== "undefined" &&
+        !(ENABLE_FEATURES || featureFlags.tokenInfo)
+      ) {
+        router.push("/assets");
+      }
+    }, [featureFlags.tokenInfo, router]);
 
     if (!tokenDenom) {
       return null; // TODO: Add skeleton loader
