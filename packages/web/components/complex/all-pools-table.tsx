@@ -33,7 +33,12 @@ import {
   PoolQuickActionCell,
 } from "~/components/table/cells";
 import { Tooltip } from "~/components/tooltip";
-import { ENABLE_FEATURES, EventName, IS_TESTNET } from "~/config";
+import {
+  ENABLE_FEATURES,
+  EventName,
+  IS_TESTNET,
+  URBIT_DEPLOYMENT,
+} from "~/config";
 import { MultiLanguageT, useFeatureFlags, useTranslation } from "~/hooks";
 import { useAmplitudeAnalytics, useFilteredData, useWindowSize } from "~/hooks";
 // import { useFeatureFlags } from "~/hooks/use-feature-flags";
@@ -114,7 +119,9 @@ export function getPoolLink(queryPool: ObservableQueryPool): string {
     return `https://celatone.osmosis.zone/osmosis-1/pools/${queryPool.id}`;
   }
 
-  return `/pool/${queryPool.id}`;
+  return URBIT_DEPLOYMENT
+    ? `https://app.osmosis.zone/pool/${queryPool.id}`
+    : `/pool/${queryPool.id}`;
 }
 
 export const AllPoolsTable: FunctionComponent<{
