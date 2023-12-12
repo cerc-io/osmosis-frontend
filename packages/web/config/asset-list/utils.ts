@@ -60,12 +60,13 @@ function findMinDenomAndDecimals({
   return { minimalDenom, displayDecimals };
 }
 
-const tokensDir = `${process.env.NEXT_PUBLIC_BASEPATH}/tokens/generated`;
+const tokensDir = "/tokens/generated";
 export function getImageRelativeFilePath(imageUrl: string, symbol: string) {
   const urlParts = imageUrl.split("/");
   const fileNameSplit = urlParts[urlParts.length - 1].split(".");
   const fileType = fileNameSplit[fileNameSplit.length - 1];
-  return path.join(tokensDir, `${symbol.toLowerCase()}.${fileType}`);
+  const basePath = process.env.NEXT_PUBLIC_BASEPATH ?? "";
+  return path.join(basePath, tokensDir, `${symbol.toLowerCase()}.${fileType}`);
 }
 
 export function getNodeImageRelativeFilePath(imageUrl: string, symbol: string) {

@@ -8,7 +8,7 @@ const SEO_VALUES = {
   SITE_URL: "https://osmosis.zone/",
   TWITTER_HANDLE: "@osmosiszone",
   IMAGE_PREVIEW: `${process.env.NEXT_PUBLIC_BASEPATH}/images/preview.jpg`,
-  FAVICON: "/favicon.ico",
+  FAVICON: `${process.env.NEXT_PUBLIC_BASEPATH}/favicon.ico`,
 };
 
 const SEO: React.FC = () => {
