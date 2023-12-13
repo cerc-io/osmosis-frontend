@@ -400,7 +400,7 @@ export const AssetsTableV1: FunctionComponent<Props> = observer(
           ? tableData.map((cell) => ({
               link: URBIT_DEPLOYMENT
                 ? `https://app.osmosis.zone/assets/${cell.coinDenom}`
-                : `/assets/${cell.coinDenom}`,
+                : `/assets/${cell.coinDenom.toLowerCase()}`,
               makeHoverClass: () => "hover:bg-osmoverse-850",
               onClick: () => {
                 logEvent([
@@ -593,7 +593,7 @@ export const AssetsTableV1: FunctionComponent<Props> = observer(
                       href={
                         URBIT_DEPLOYMENT
                           ? `https://app.osmosis.zone/assets/${assetData.coinDenom}`
-                          : `/assets/${assetData.coinDenom}`
+                          : `/assets/${assetData.coinDenom.toLowerCase()}`
                       }
                       className="flex shrink flex-col gap-1 text-ellipsis"
                       onClick={(e) => {

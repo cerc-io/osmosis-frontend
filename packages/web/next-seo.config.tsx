@@ -17,7 +17,11 @@ const SEO: React.FC = () => {
   const [shortcutIcon, setShortcutIcon] = useState<string>("");
 
   useEffect(() => {
-    setShortcutIcon(`${window?.origin || ""}/osmosis-logo-wc.png`);
+    setShortcutIcon(
+      `${
+        window?.origin || process.env.NEXT_PUBLIC_BASEPATH || ""
+      }/osmosis-logo-wc.png`
+    );
   }, []);
 
   const config: DefaultSeoProps = {

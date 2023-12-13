@@ -556,7 +556,7 @@ export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
    */
   paths = currencies.map((currency) => ({
     params: {
-      denom: currency.coinDenom,
+      denom: currency.coinDenom.toLowerCase(),
     },
   }));
 
