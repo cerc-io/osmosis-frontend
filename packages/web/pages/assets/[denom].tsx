@@ -29,6 +29,7 @@ import {
   ENABLE_FEATURES,
   EventName,
   TWITTER_PUBLIC_URL,
+  URBIT_DEPLOYMENT,
 } from "~/config";
 import { AssetLists } from "~/config/generated/asset-lists";
 import { ChainList } from "~/config/generated/chain-list";
@@ -556,7 +557,9 @@ export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
    */
   paths = currencies.map((currency) => ({
     params: {
-      denom: currency.coinDenom.toLowerCase(),
+      denom: URBIT_DEPLOYMENT
+        ? currency.coinDenom.toLowerCase()
+        : currency.coinDenom,
     },
   }));
 
