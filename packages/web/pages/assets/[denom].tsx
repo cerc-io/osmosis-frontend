@@ -109,7 +109,7 @@ const AssetInfoView: FunctionComponent<AssetInfoPageProps> = observer(
     const { queriesExternalStore, priceStore } = useStore();
 
     const assetInfoConfig = useAssetInfoConfig(
-      router.query.denom as string,
+      (router.query.denom as string).toUpperCase(),
       queriesExternalStore,
       priceStore,
       imperatorDenom,
@@ -121,7 +121,7 @@ const AssetInfoView: FunctionComponent<AssetInfoPageProps> = observer(
     useAmplitudeAnalytics({
       onLoadEvent: [
         EventName.TokenInfo.pageViewed,
-        { tokenName: router.query.denom as string },
+        { tokenName: (router.query.denom as string).toUpperCase() },
       ],
     });
 
@@ -161,7 +161,7 @@ const AssetInfoView: FunctionComponent<AssetInfoPageProps> = observer(
     const memoedPools = routablePools ?? [];
 
     const denom = useMemo(() => {
-      return router.query.denom as string;
+      return (router.query.denom as string).toUpperCase();
     }, [router.query.denom]);
 
     return (
@@ -574,7 +574,7 @@ export const getStaticProps: GetStaticProps<AssetInfoPageProps> = async ({
   params,
 }) => {
   let tweets: RichTweet[] = [];
-  let tokenDenom = params?.denom as string;
+  let tokenDenom = (params?.denom as string).toUpperCase();
   let tokenDetailsByLanguage: { [key: string]: TokenCMSData } | null = null;
   let coingeckoCoin: CoingeckoCoin | null = null;
   let imperatorDenom: string | null = null;
