@@ -14,6 +14,16 @@ import { useTranslation } from "~/hooks";
 import { useAmplitudeAnalytics, useFakeFeeConfig } from "~/hooks";
 import { useStore } from "~/stores";
 
+const giftBoxClassName =
+  "pointer-events-none absolute left-[-2.5rem] bottom-[-2.1875rem] h-full w-full bg-[url('" +
+  process.env.NEXT_PUBLIC_BASEPATH +
+  "/images/gift-box.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible";
+
+const piggyBankClassName =
+  "pointer-events-none absolute left-[-1.5625rem] bottom-[-2.1875rem] h-full w-full bg-[url('" +
+  process.env.NEXT_PUBLIC_BASEPATH +
+  "/images/piggy-bank.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible";
+
 export const StakeDashboard: React.FC<{
   setShowValidatorModal: (val: boolean) => void;
   setShowStakeLearnMoreModal: (val: boolean) => void;
@@ -158,13 +168,7 @@ export const StakeDashboard: React.FC<{
             tooltipContent={t("stake.collectRewardsTooltip")}
             disabledTooltipContent={t("stake.collectRewardsTooltipDisabled")}
             onClick={collectRewards}
-            image={
-              <div
-                // TODO: use process.env.NEXT_PUBLIC_BASEPATH
-                // (build fails because ${process.env.NEXT_PUBLIC_BASEPATH} not getting replaced)
-                className={`pointer-events-none absolute left-[-2.5rem] bottom-[-2.1875rem] h-full w-full bg-[url('/apps/osmosis/images/gift-box.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible`}
-              />
-            }
+            image={<div className={giftBoxClassName} />}
           />
           <RewardsCard
             disabled={collectAndReinvestRewardsDisabled}
@@ -172,13 +176,7 @@ export const StakeDashboard: React.FC<{
             tooltipContent={t("stake.collectAndReinvestTooltip")}
             disabledTooltipContent={t("stake.collectRewardsTooltipDisabled")}
             onClick={collectAndReinvestRewards}
-            image={
-              <div
-                // TODO: use process.env.NEXT_PUBLIC_BASEPATH
-                // (build fails because ${process.env.NEXT_PUBLIC_BASEPATH} not getting replaced)
-                className={`pointer-events-none absolute left-[-1.5625rem] bottom-[-2.1875rem] h-full w-full bg-[url('/apps/osmosis/images/piggy-bank.svg')] bg-contain bg-no-repeat xl:left-1 xl:bottom-[-0.9rem] lg:invisible`}
-              />
-            }
+            image={<div className={piggyBankClassName} />}
           />
         </div>
       </GenericMainCard>
