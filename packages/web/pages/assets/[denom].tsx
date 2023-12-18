@@ -40,11 +40,7 @@ import {
   useTranslation,
   useWindowSize,
 } from "~/hooks";
-import {
-  useAssetInfoConfig,
-  useLocalStorageState,
-  useNavBar,
-} from "~/hooks";
+import { useAssetInfoConfig, useLocalStorageState, useNavBar } from "~/hooks";
 import { useRoutablePools } from "~/hooks/data/use-routable-pools";
 import {
   CoingeckoCoin,
